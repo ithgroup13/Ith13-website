@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ith13.com/sitemap.xml
