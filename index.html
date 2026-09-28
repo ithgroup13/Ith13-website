@@ -2,26 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link rel="preconnect" href="https://cdn-cookieyes.com" crossorigin>
-<link rel="dns-prefetch" href="//cdn-cookieyes.com">
-<!-- Start cookieyes banner --> <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/c3b71054522f30f9e6fc8c6438a16d31/script.js"></script> <!-- End cookieyes banner -->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TPVCZJ1SYB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TPVCZJ1SYB');
-</script>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "xi36360rc3");
-</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="color-scheme" content="light only"/>
 <meta name="supported-color-schemes" content="light"/>
@@ -90,8 +70,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
-<link rel="dns-prefetch" href="https://www.clarity.ms"/>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"/>
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500&display=swap"/></noscript>
 <style>
@@ -1379,16 +1357,6 @@ function scrollToSection(section){
 
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},5000);}
 
-// GA4 lead-conversion tracking (fires only after a confirmed Web3Forms success)
-function trackGenerateLead(division,formName){
-  try{
-    var validDivisions=['sport','marine','event'];
-    if(validDivisions.indexOf(division)===-1)return;
-    var l=(typeof SUPPORTED_LANGS!=='undefined'&&SUPPORTED_LANGS.indexOf(lang)>-1)?lang:'en';
-    if(typeof gtag!=='function')return;
-    gtag('event','generate_lead',{division:division,site_language:l,form_name:formName});
-  }catch(e){}
-}
 
 async function submitForm(form){
   var div=form.dataset.division||'ith';
@@ -1403,7 +1371,7 @@ async function submitForm(form){
     fd.append('botcheck','');
     var r=await fetch('https://api.web3forms.com/submit',{method:'POST',body:fd,headers:{'Accept':'application/json'}});
     var j=await r.json();
-    if(r.ok&&j.success){showToast('Message sent — we\'ll be in touch soon!');form.reset();trackGenerateLead(div,div+'_enquiry');}else{throw 0;}
+    if(r.ok&&j.success){showToast('Message sent — we\'ll be in touch soon!');form.reset();}else{throw 0;}
   }catch(e){
     var data=Object.fromEntries(new FormData(form));
     var body=Object.entries(data).map(function(kv){return kv[0]+': '+kv[1];}).join('\n');
@@ -2054,13 +2022,9 @@ var PRIVACY={
     '<h3>Data Controller</h3><p>The controller responsible for your personal data is:<br><strong>IDEAL TREND HUNGARY Kft.</strong> (ITH Group)<br>Registered seat: 8095 Pákozd, Szeder utca 33-37., Hungary<br>Company registration number: 07-09-032509<br>EU VAT number: HU24740054<br>Email: <a href="mailto:info@ith13.com">info@ith13.com</a><br>Phone: +36 30 527 2010</p>'+
     '<h3>What we collect and why</h3><p>We only process the personal data you actively provide, together with limited technical data needed to run the site securely. We do not sell your data and we do not share it with third parties for their own marketing.</p>'+
     '<h3>Contact form</h3><p>When you submit an enquiry through our contact form, we collect your name, company, email address and the details of your enquiry (such as product type, quantity, frequency and message). This data is used solely to respond to your enquiry and to discuss potential business cooperation. The legal basis is your consent and our legitimate interest in answering business enquiries. Form submissions are delivered to us by email through the form-processing service <strong>Web3Forms</strong>, acting as our processor, and are received at info@ith13.com.</p>'+
-    '<h3>Google Analytics 4</h3><p>With your consent, we use Google Analytics 4 (provided by Google) to understand in aggregate how visitors use our website, so we can improve it. Analytics cookies are only set after you accept them in the cookie banner. The legal basis is your consent.</p>'+
-    '<h3>Microsoft Clarity</h3><p>With your consent, we use Microsoft Clarity (provided by Microsoft) to analyse how our website is used through aggregated metrics and heatmaps. Clarity is only activated after you accept analytics cookies. The legal basis is your consent.</p>'+
-    '<h3>Cookie consent (CookieYes)</h3><p>We use CookieYes to manage your cookie preferences and to record your consent choices. You can review or change your choices at any time through the cookie banner. For details of each cookie we use, see our <a class="privacy-link" data-cookie>Cookie Policy</a>.</p>'+
-    '<h3>Cookies</h3><p>Our website uses necessary cookies to function and, with your consent, analytics cookies. A full description of the cookies we use, their purpose and lifetime is set out in our <a class="privacy-link" data-cookie>Cookie Policy</a>.</p>'+
+    '<h3>Cookies and local storage</h3><p>This website does not use analytics or advertising tools. It stores your language preference in your browser so the site can remember your choice. Our hosting provider may also process limited technical data in server logs to deliver and secure the site.</p>'+
     '<h3>Server logs</h3><p>Our website is hosted by Netlify. Like most hosting providers, Netlify automatically processes limited technical data in server logs (such as your IP address, browser type and the pages requested) for the purposes of delivering the site, security and abuse prevention. The legal basis is our legitimate interest in operating a secure and reliable website.</p>'+
-    '<h3>Data retention</h3><p>Enquiry data is kept only as long as necessary to handle your request and any resulting business relationship, after which it is deleted. Analytics data is retained for the standard periods set by the respective providers. Server logs are kept only for a short period for security purposes.</p>'+
-    '<h3>International transfers</h3><p>Some of our providers (such as Google and Microsoft) may process data outside the European Economic Area. Where this happens, transfers are protected by appropriate safeguards, such as the Standard Contractual Clauses approved by the European Commission.</p>'+
+    '<h3>Data retention</h3><p>Enquiry data is kept only as long as necessary to handle your request and any resulting business relationship, after which it is deleted. Server logs are kept only for a short period for security purposes.</p>'+
     '<h3>Your GDPR rights</h3><p>Under the GDPR you have the right to access, rectify, erase or restrict the processing of your personal data, to object to processing, to data portability, and to withdraw consent at any time. You also have the right to lodge a complaint with a supervisory authority; in Hungary this is the National Authority for Data Protection and Freedom of Information (NAIH, naih.hu).</p>'+
     '<h3>Contact</h3><p>To exercise any of your rights, or for any privacy-related question, contact us at <a href="mailto:info@ith13.com">info@ith13.com</a>.</p>'},
   de:{title:'Datenschutzerklärung',html:'<p><em>Zuletzt aktualisiert: '+new Date().getFullYear()+'</em></p>'+
@@ -2068,13 +2032,9 @@ var PRIVACY={
     '<h3>Verantwortlicher</h3><p>Verantwortlicher für Ihre personenbezogenen Daten ist:<br><strong>IDEAL TREND HUNGARY Kft.</strong> (ITH Group)<br>Sitz: 8095 Pákozd, Szeder utca 33-37., Ungarn<br>Handelsregisternummer: 07-09-032509<br>EU-USt-IdNr.: HU24740054<br>E-Mail: <a href="mailto:info@ith13.com">info@ith13.com</a><br>Telefon: +36 30 527 2010</p>'+
     '<h3>Welche Daten wir erheben und warum</h3><p>Wir verarbeiten ausschließlich die personenbezogenen Daten, die Sie aktiv angeben, sowie begrenzte technische Daten, die für den sicheren Betrieb der Website erforderlich sind. Wir verkaufen Ihre Daten nicht und geben sie nicht zu eigenen Marketingzwecken an Dritte weiter.</p>'+
     '<h3>Kontaktformular</h3><p>Wenn Sie über unser Kontaktformular eine Anfrage senden, erheben wir Ihren Namen, Ihr Unternehmen, Ihre E-Mail-Adresse und die Angaben zu Ihrer Anfrage (etwa Produktart, Menge, Häufigkeit und Nachricht). Diese Daten werden ausschließlich zur Beantwortung Ihrer Anfrage und zur Besprechung einer möglichen Geschäftskooperation verwendet. Rechtsgrundlage sind Ihre Einwilligung und unser berechtigtes Interesse an der Beantwortung geschäftlicher Anfragen. Formularübermittlungen werden uns per E-Mail über den Formularverarbeitungsdienst <strong>Web3Forms</strong>, der als unser Auftragsverarbeiter tätig ist, zugestellt und unter info@ith13.com empfangen.</p>'+
-    '<h3>Google Analytics 4</h3><p>Mit Ihrer Einwilligung nutzen wir Google Analytics 4 (bereitgestellt von Google), um in aggregierter Form nachzuvollziehen, wie Besucher unsere Website nutzen, damit wir sie verbessern können. Analyse-Cookies werden erst gesetzt, nachdem Sie sie im Cookie-Banner akzeptiert haben. Rechtsgrundlage ist Ihre Einwilligung.</p>'+
-    '<h3>Microsoft Clarity</h3><p>Mit Ihrer Einwilligung nutzen wir Microsoft Clarity (bereitgestellt von Microsoft), um anhand aggregierter Kennzahlen und Heatmaps zu analysieren, wie unsere Website genutzt wird. Clarity wird erst aktiviert, nachdem Sie Analyse-Cookies akzeptiert haben. Rechtsgrundlage ist Ihre Einwilligung.</p>'+
-    '<h3>Cookie-Einwilligung (CookieYes)</h3><p>Wir setzen CookieYes ein, um Ihre Cookie-Einstellungen zu verwalten und Ihre Einwilligungsentscheidungen zu dokumentieren. Sie können Ihre Auswahl jederzeit über das Cookie-Banner einsehen oder ändern. Einzelheiten zu jedem von uns verwendeten Cookie finden Sie in unserer <a class="privacy-link" data-cookie>Cookie-Richtlinie</a>.</p>'+
-    '<h3>Cookies</h3><p>Unsere Website verwendet technisch erforderliche Cookies für ihren Betrieb und, mit Ihrer Einwilligung, Analyse-Cookies. Eine vollständige Beschreibung der von uns verwendeten Cookies, ihres Zwecks und ihrer Speicherdauer finden Sie in unserer <a class="privacy-link" data-cookie>Cookie-Richtlinie</a>.</p>'+
+    '<h3>Cookies und lokaler Speicher</h3><p>Diese Website verwendet keine Analyse- oder Werbetools. Ihre Sprachauswahl wird im lokalen Speicher Ihres Browsers gespeichert, damit die Website Ihre Auswahl beibehalten kann. Unser Hosting-Anbieter kann außerdem begrenzte technische Daten in Serverprotokollen verarbeiten, um die Website bereitzustellen und zu schützen.</p>'+
     '<h3>Server-Protokolle</h3><p>Unsere Website wird von Netlify gehostet. Wie die meisten Hosting-Anbieter verarbeitet Netlify in Server-Protokollen automatisch begrenzte technische Daten (etwa Ihre IP-Adresse, den Browsertyp und die aufgerufenen Seiten) zu den Zwecken der Bereitstellung der Website, der Sicherheit und der Missbrauchsvermeidung. Rechtsgrundlage ist unser berechtigtes Interesse am Betrieb einer sicheren und zuverlässigen Website.</p>'+
-    '<h3>Speicherdauer</h3><p>Anfragedaten werden nur so lange gespeichert, wie es zur Bearbeitung Ihrer Anfrage und einer daraus entstehenden Geschäftsbeziehung erforderlich ist, und anschließend gelöscht. Analysedaten werden für die von den jeweiligen Anbietern festgelegten Standardzeiträume gespeichert. Server-Protokolle werden aus Sicherheitsgründen nur für einen kurzen Zeitraum aufbewahrt.</p>'+
-    '<h3>Internationale Datenübermittlungen</h3><p>Einige unserer Anbieter (etwa Google und Microsoft) können Daten außerhalb des Europäischen Wirtschaftsraums verarbeiten. Soweit dies geschieht, werden die Übermittlungen durch geeignete Garantien geschützt, etwa die von der Europäischen Kommission genehmigten Standardvertragsklauseln.</p>'+
+    '<h3>Speicherdauer</h3><p>Anfragedaten werden nur so lange gespeichert, wie es zur Bearbeitung Ihrer Anfrage und einer daraus entstehenden Geschäftsbeziehung erforderlich ist, und anschließend gelöscht. Server-Protokolle werden aus Sicherheitsgründen nur für einen kurzen Zeitraum aufbewahrt.</p>'+
     '<h3>Ihre Rechte nach der DSGVO</h3><p>Nach der DSGVO haben Sie das Recht auf Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung Ihrer personenbezogenen Daten, das Recht auf Widerspruch gegen die Verarbeitung, das Recht auf Datenübertragbarkeit sowie das Recht, Ihre Einwilligung jederzeit zu widerrufen. Ihnen steht außerdem das Recht zu, sich bei einer Aufsichtsbehörde zu beschweren; in Ungarn ist dies die Nationale Behörde für Datenschutz und Informationsfreiheit (NAIH, naih.hu).</p>'+
     '<h3>Kontakt</h3><p>Um eines Ihrer Rechte auszuüben oder bei Fragen zum Datenschutz wenden Sie sich bitte an <a href="mailto:info@ith13.com">info@ith13.com</a>.</p>'},
   hu:{title:'Adatkezelési tájékoztató',html:'<p><em>Utolsó frissítés: '+new Date().getFullYear()+'</em></p>'+
@@ -2082,13 +2042,10 @@ var PRIVACY={
     '<h3>Adatkezelő</h3><p>Az Ön személyes adataiért felelős adatkezelő:<br><strong>IDEAL TREND HUNGARY Kft.</strong> (ITH Group)<br>Székhely: 8095 Pákozd, Szeder utca 33-37.<br>Cégjegyzékszám: 07-09-032509<br>Közösségi adószám: HU24740054<br>E-mail: <a href="mailto:info@ith13.com">info@ith13.com</a><br>Telefon: +36 30 527 2010</p>'+
     '<h3>Milyen adatokat és miért gyűjtünk</h3><p>Kizárólag az Ön által megadott személyes adatokat kezeljük, valamint a weboldal biztonságos működéséhez szükséges korlátozott technikai adatokat. Adatait nem értékesítjük, és saját marketing céljából nem adjuk át harmadik félnek.</p>'+
     '<h3>Kapcsolatfelvételi űrlap</h3><p>A kapcsolatfelvételi űrlap kitöltésekor a nevét, cégét, e-mail címét és a megkeresés részleteit (például terméktípus, mennyiség, gyakoriság, üzenet) gyűjtjük. Ezeket az adatokat kizárólag a megkeresésére adott válaszhoz és a lehetséges együttműködés megbeszéléséhez használjuk. A kezelés jogalapja az Ön hozzájárulása és a megkeresések megválaszolásához fűződő jogos érdekünk. Az űrlapokat a <strong>Web3Forms</strong> feldolgozó szolgáltatáson keresztül, e-mailben kapjuk meg az info@ith13.com címen.</p>'+
-    '<h3>Google Analytics 4</h3><p>Az Ön hozzájárulásával a Google Analytics 4 szolgáltatást használjuk annak összesített megértésére, hogyan használják látogatóink a weboldalt, hogy javíthassuk azt. Az analitikai sütik csak azután kerülnek beállításra, hogy Ön elfogadta azokat a süti sávban. A kezelés jogalapja az Ön hozzájárulása.</p>'+
-    '<h3>Microsoft Clarity</h3><p>Az Ön hozzájárulásával a Microsoft Clarity szolgáltatást használjuk a weboldal használatának összesített mutatókkal és hőtérképekkel történő elemzésére. A Clarity csak az analitikai sütik elfogadása után aktiválódik. A kezelés jogalapja az Ön hozzájárulása.</p>'+
-    '<h3>Süti-hozzájárulás (CookieYes)</h3><p>A süti-beállítások kezelésére és a hozzájárulás rögzítésére a CookieYes szolgáltatást használjuk. Választását bármikor módosíthatja a süti sávon keresztül. Az egyes sütik részleteit a <a class="privacy-link" data-cookie>Cookie-szabályzatunk</a> tartalmazza.</p>'+
     '<h3>Sütik</h3><p>Weboldalunk a működéshez szükséges sütiket, valamint az Ön hozzájárulásával analitikai sütiket használ. A használt sütik teljes leírását, célját és élettartamát a <a class="privacy-link" data-cookie>Cookie-szabályzatunk</a> tartalmazza.</p>'+
+    '<h3>Sütik és helyi tárhely</h3><p>Ez a weboldal nem használ analitikai vagy hirdetési eszközöket. A nyelvi beállítást a böngésző helyi tárhelyén menti el, hogy megjegyezze a választását. A tárhelyszolgáltató a weboldal kiszolgálása és biztonsága érdekében korlátozott technikai adatokat is kezelhet a szervernaplókban.</p>'+
     '<h3>Szerveroldali naplók</h3><p>Weboldalunkat a Netlify üzemelteti. A legtöbb tárhelyszolgáltatóhoz hasonlóan a Netlify automatikusan korlátozott technikai adatokat kezel a szervernaplókban (például az Ön IP-címét, böngészőtípusát és a lekért oldalakat) a weboldal kiszolgálása, a biztonság és a visszaélések megelőzése céljából. A jogalap a biztonságos és megbízható weboldal működtetéséhez fűződő jogos érdekünk.</p>'+
-    '<h3>Adatmegőrzés</h3><p>A megkeresési adatokat csak addig őrizzük, ameddig a kérése és az esetleges üzleti kapcsolat kezeléséhez szükséges, ezután töröljük. Az analitikai adatok megőrzési ideje a szolgáltatók által meghatározott szokásos időtartam. A szervernaplókat csak rövid ideig, biztonsági célból tároljuk.</p>'+
-    '<h3>Adattovábbítás</h3><p>Egyes szolgáltatóink (például a Google és a Microsoft) az Európai Gazdasági Térségen kívül is kezelhetnek adatokat. Ilyen esetben a továbbítást megfelelő garanciák védik, például az Európai Bizottság által jóváhagyott általános szerződési feltételek.</p>'+
+    '<h3>Adatmegőrzés</h3><p>A megkeresési adatokat csak addig őrizzük, ameddig a kérése és az esetleges üzleti kapcsolat kezeléséhez szükséges, ezután töröljük. A szervernaplókat csak rövid ideig, biztonsági célból tároljuk.</p>'+
     '<h3>Az Ön GDPR szerinti jogai</h3><p>A GDPR alapján Önnek joga van személyes adataihoz való hozzáféréshez, azok helyesbítéséhez, törléséhez vagy kezelésük korlátozásához, az adatkezelés elleni tiltakozáshoz, az adathordozhatósághoz, valamint a hozzájárulás bármikori visszavonásához. Joga van továbbá panaszt tenni a felügyeleti hatóságnál; Magyarországon ez a Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH, naih.hu).</p>'+
     '<h3>Kapcsolat</h3><p>Jogai gyakorlásához vagy bármely adatvédelmi kérdésben írjon az <a href="mailto:info@ith13.com">info@ith13.com</a> címre.</p>'},
   it:{title:'Informativa sulla privacy',html:'<p><em>Ultimo aggiornamento: '+new Date().getFullYear()+'</em></p>'+
@@ -2096,13 +2053,9 @@ var PRIVACY={
     '<h3>Titolare del trattamento</h3><p>Il titolare responsabile dei tuoi dati personali è:<br><strong>IDEAL TREND HUNGARY Kft.</strong> (ITH Group)<br>Sede legale: 8095 Pákozd, Szeder utca 33-37., Ungheria<br>Numero di registrazione: 07-09-032509<br>Partita IVA UE: HU24740054<br>E-mail: <a href="mailto:info@ith13.com">info@ith13.com</a><br>Telefono: +36 30 527 2010</p>'+
     '<h3>Quali dati raccogliamo e perché</h3><p>Trattiamo esclusivamente i dati personali che fornisci attivamente, insieme a dati tecnici limitati necessari a gestire il sito in modo sicuro. Non vendiamo i tuoi dati e non li condividiamo con terzi per finalità di marketing proprie.</p>'+
     '<h3>Modulo di contatto</h3><p>Quando invii una richiesta tramite il nostro modulo di contatto, raccogliamo il tuo nome, l\'azienda, l\'indirizzo e-mail e i dettagli della tua richiesta (come tipo di prodotto, quantità, frequenza e messaggio). Questi dati sono utilizzati esclusivamente per rispondere alla tua richiesta e per valutare una possibile collaborazione commerciale. La base giuridica è il tuo consenso e il nostro legittimo interesse a rispondere alle richieste commerciali. Gli invii del modulo ci vengono recapitati via e-mail tramite il servizio di elaborazione moduli <strong>Web3Forms</strong>, che agisce come nostro responsabile del trattamento, e sono ricevuti all\'indirizzo info@ith13.com.</p>'+
-    '<h3>Google Analytics 4</h3><p>Con il tuo consenso, utilizziamo Google Analytics 4 (fornito da Google) per comprendere in forma aggregata come i visitatori utilizzano il nostro sito web, così da poterlo migliorare. I cookie analitici vengono impostati solo dopo che li hai accettati nel banner dei cookie. La base giuridica è il tuo consenso.</p>'+
-    '<h3>Microsoft Clarity</h3><p>Con il tuo consenso, utilizziamo Microsoft Clarity (fornito da Microsoft) per analizzare come viene utilizzato il nostro sito web tramite metriche aggregate e mappe di calore. Clarity viene attivato solo dopo che hai accettato i cookie analitici. La base giuridica è il tuo consenso.</p>'+
-    '<h3>Consenso ai cookie (CookieYes)</h3><p>Utilizziamo CookieYes per gestire le tue preferenze sui cookie e per registrare le tue scelte di consenso. Puoi consultare o modificare le tue scelte in qualsiasi momento tramite il banner dei cookie. Per i dettagli su ciascun cookie che utilizziamo, consulta la nostra <a class="privacy-link" data-cookie>Cookie Policy</a>.</p>'+
-    '<h3>Cookie</h3><p>Il nostro sito web utilizza cookie necessari per funzionare e, con il tuo consenso, cookie analitici. Una descrizione completa dei cookie che utilizziamo, della loro finalità e della loro durata è riportata nella nostra <a class="privacy-link" data-cookie>Cookie Policy</a>.</p>'+
+    '<h3>Cookie e archiviazione locale</h3><p>Questo sito non utilizza strumenti di analisi o pubblicitari. Memorizza la preferenza linguistica nella memoria locale del browser per ricordare la tua scelta. Il nostro provider di hosting può inoltre trattare dati tecnici limitati nei log del server per fornire e proteggere il sito.</p>'+
     '<h3>File di log del server</h3><p>Il nostro sito web è ospitato da Netlify. Come la maggior parte dei fornitori di hosting, Netlify tratta automaticamente dati tecnici limitati nei file di log del server (come il tuo indirizzo IP, il tipo di browser e le pagine richieste) per le finalità di erogazione del sito, sicurezza e prevenzione degli abusi. La base giuridica è il nostro legittimo interesse a gestire un sito web sicuro e affidabile.</p>'+
-    '<h3>Periodo di conservazione</h3><p>I dati delle richieste sono conservati solo per il tempo necessario a gestire la tua richiesta e l\'eventuale rapporto commerciale che ne deriva, dopodiché vengono eliminati. I dati analitici sono conservati per i periodi standard stabiliti dai rispettivi fornitori. I file di log del server sono conservati solo per un breve periodo a fini di sicurezza.</p>'+
-    '<h3>Trasferimenti internazionali</h3><p>Alcuni dei nostri fornitori (come Google e Microsoft) possono trattare i dati al di fuori dello Spazio economico europeo. Ove ciò avvenga, i trasferimenti sono protetti da garanzie adeguate, come le clausole contrattuali standard approvate dalla Commissione europea.</p>'+
+    '<h3>Periodo di conservazione</h3><p>I dati delle richieste sono conservati solo per il tempo necessario a gestire la tua richiesta e l\'eventuale rapporto commerciale che ne deriva, dopodiché vengono eliminati. I file di log del server sono conservati solo per un breve periodo a fini di sicurezza.</p>'+
     '<h3>I tuoi diritti ai sensi del GDPR</h3><p>Ai sensi del GDPR hai il diritto di accedere ai tuoi dati personali, di rettificarli, cancellarli o limitarne il trattamento, di opporti al trattamento, alla portabilità dei dati e di revocare il consenso in qualsiasi momento. Hai inoltre il diritto di presentare un reclamo a un\'autorità di controllo; in Ungheria è l\'Autorità nazionale per la protezione dei dati e la libertà di informazione (NAIH, naih.hu).</p>'+
     '<h3>Contatti</h3><p>Per esercitare uno qualsiasi dei tuoi diritti o per qualsiasi domanda relativa alla privacy, contattaci all\'indirizzo <a href="mailto:info@ith13.com">info@ith13.com</a>.</p>'}
 };
@@ -2229,54 +2182,10 @@ var IMPRINT={
 
 // --- COOKIE POLICY OVERLAY ---
 var COOKIE={
-  en:{title:'Cookie Policy',html:'<p><em>Last updated: '+new Date().getFullYear()+'</em></p>'+
-    '<p>This Cookie Policy explains how ITH Group, operated by IDEAL TREND HUNGARY Kft., uses cookies and similar technologies on this website. For how we handle personal data more generally, please see our <a class="privacy-link" data-privacy>Privacy Policy</a>.</p>'+
-    '<h3>What are cookies?</h3><p>Cookies are small text files stored on your device when you visit a website. They help the site work correctly and, where you allow it, help us understand how the site is used.</p>'+
-    '<h3>Necessary cookies</h3><p>These cookies are required for the website to work and cannot be switched off. They include the cookie set by our consent tool <strong>CookieYes</strong>, which remembers your cookie choices so you are not asked repeatedly. No consent is required for strictly necessary cookies.</p>'+
-    '<h3>Analytics cookies</h3><p>These cookies are only set if you accept them. They help us understand how visitors use the site so we can improve it.</p>'+
-    '<p><strong>Google Analytics</strong> sets cookies such as <em>_ga</em> and <em>_ga_&lt;id&gt;</em> to distinguish visitors and measure site usage in aggregate.</p>'+
-    '<p><strong>Microsoft Clarity</strong> sets cookies such as <em>_clck</em> and <em>_clsk</em> to record aggregated usage and heatmap data.</p>'+
-    '<h3>CookieYes</h3><p>CookieYes stores your consent decision (for example in a <em>cookieyes-consent</em> cookie) so the site can respect your choice on future visits.</p>'+
-    '<h3>Cookie lifetime</h3><p>Cookie lifetimes vary. The CookieYes consent cookie typically lasts up to one year; Google Analytics cookies typically last up to two years; and Microsoft Clarity cookies up to one year. Session cookies are deleted when you close your browser.</p>'+
-    '<h3>Managing your consent</h3><p>You can accept or reject non-essential cookies when you first visit the site, and you can change your choice at any time by reopening the cookie banner through the cookie / consent button provided by CookieYes.</p>'+
-    '<h3>Removing cookies in your browser</h3><p>You can also delete or block cookies through your browser settings. Most browsers let you clear existing cookies and prevent new ones under their privacy or security settings. Please note that blocking necessary cookies may affect how the website works.</p>'+
-    '<h3>More information</h3><p>For more about how we process personal data, see our <a class="privacy-link" data-privacy>Privacy Policy</a>.</p>'},
-  de:{title:'Cookie-Richtlinie',html:'<p><em>Zuletzt aktualisiert: '+new Date().getFullYear()+'</em></p>'+
-    '<p>Diese Cookie-Richtlinie erläutert, wie ITH Group, betrieben von der IDEAL TREND HUNGARY Kft., auf dieser Website Cookies und ähnliche Technologien einsetzt. Wie wir personenbezogene Daten allgemein verarbeiten, erfahren Sie in unserer <a class="privacy-link" data-privacy>Datenschutzerklärung</a>.</p>'+
-    '<h3>Was sind Cookies?</h3><p>Cookies sind kleine Textdateien, die beim Besuch einer Website auf Ihrem Gerät gespeichert werden. Sie sorgen dafür, dass die Website ordnungsgemäß funktioniert, und helfen uns – sofern Sie dies zulassen – zu verstehen, wie die Website genutzt wird.</p>'+
-    '<h3>Technisch erforderliche Cookies</h3><p>Diese Cookies sind für den Betrieb der Website erforderlich und können nicht deaktiviert werden. Dazu gehört das Cookie unseres Consent-Tools <strong>CookieYes</strong>, das Ihre Cookie-Einstellungen speichert, damit Sie nicht wiederholt gefragt werden. Für technisch erforderliche Cookies ist keine Einwilligung notwendig.</p>'+
-    '<h3>Analyse-Cookies</h3><p>Diese Cookies werden nur gesetzt, wenn Sie ihnen zustimmen. Sie helfen uns zu verstehen, wie Besucher die Website nutzen, damit wir sie verbessern können.</p>'+
-    '<p><strong>Google Analytics</strong> setzt Cookies wie <em>_ga</em> und <em>_ga_&lt;id&gt;</em>, um Besucher zu unterscheiden und die Websitenutzung in aggregierter Form zu messen.</p>'+
-    '<p><strong>Microsoft Clarity</strong> setzt Cookies wie <em>_clck</em> und <em>_clsk</em>, um aggregierte Nutzungs- und Heatmap-Daten zu erfassen.</p>'+
-    '<h3>CookieYes</h3><p>CookieYes speichert Ihre Einwilligungsentscheidung (zum Beispiel in einem <em>cookieyes-consent</em>-Cookie), damit die Website Ihre Auswahl bei zukünftigen Besuchen berücksichtigen kann.</p>'+
-    '<h3>Speicherdauer der Cookies</h3><p>Die Speicherdauer der Cookies ist unterschiedlich. Das CookieYes-Einwilligungscookie hat in der Regel eine Laufzeit von bis zu einem Jahr; Google-Analytics-Cookies in der Regel bis zu zwei Jahre; Microsoft-Clarity-Cookies bis zu einem Jahr. Sitzungscookies werden beim Schließen des Browsers gelöscht.</p>'+
-    '<h3>Verwaltung Ihrer Einwilligung</h3><p>Beim ersten Besuch der Website können Sie nicht erforderliche Cookies annehmen oder ablehnen, und Sie können Ihre Auswahl jederzeit ändern, indem Sie das Cookie-Banner über die von CookieYes bereitgestellte Cookie- bzw. Consent-Schaltfläche erneut öffnen.</p>'+
-    '<h3>Cookies im Browser entfernen</h3><p>Sie können Cookies auch über die Einstellungen Ihres Browsers löschen oder blockieren. In den meisten Browsern lassen sich vorhandene Cookies unter den Datenschutz- oder Sicherheitseinstellungen löschen und neue verhindern. Bitte beachten Sie, dass das Blockieren technisch erforderlicher Cookies die Funktionsweise der Website beeinträchtigen kann.</p>'+
-    '<h3>Weitere Informationen</h3><p>Mehr darüber, wie wir personenbezogene Daten verarbeiten, erfahren Sie in unserer <a class="privacy-link" data-privacy>Datenschutzerklärung</a>.</p>'},
-  hu:{title:'Cookie-szabályzat',html:'<p><em>Utolsó frissítés: '+new Date().getFullYear()+'</em></p>'+
-    '<p>Ez a Cookie-szabályzat bemutatja, hogyan használ az ITH Group, amelyet az IDEAL TREND HUNGARY Kft. üzemeltet, sütiket és hasonló technológiákat ezen a weboldalon. A személyes adatok általános kezeléséről az <a class="privacy-link" data-privacy>Adatkezelési tájékoztatóban</a> olvashat.</p>'+
-    '<h3>Mik azok a sütik?</h3><p>A sütik kis szöveges fájlok, amelyeket a weboldal látogatásakor tárol az eszköze. Segítik a weboldal megfelelő működését, és ha Ön engedélyezi, segítenek megérteni a weboldal használatát.</p>'+
-    '<h3>Szükséges sütik</h3><p>Ezek a sütik a weboldal működéséhez szükségesek, és nem kapcsolhatók ki. Ide tartozik a <strong>CookieYes</strong> hozzájárulás-kezelő eszköz által beállított süti, amely megjegyzi az Ön süti-választásait, hogy ne kelljen ismételten rákérdeznünk. A feltétlenül szükséges sütikhez nincs szükség hozzájárulásra.</p>'+
-    '<h3>Analitikai sütik</h3><p>Ezek a sütik csak akkor kerülnek beállításra, ha Ön elfogadja őket. Segítenek megérteni, hogyan használják látogatóink a weboldalt, hogy javíthassuk azt.</p>'+
-    '<p>A <strong>Google Analytics</strong> olyan sütiket állít be, mint a <em>_ga</em> és a <em>_ga_&lt;id&gt;</em>, a látogatók megkülönböztetésére és a használat összesített mérésére.</p>'+
-    '<p>A <strong>Microsoft Clarity</strong> olyan sütiket állít be, mint a <em>_clck</em> és a <em>_clsk</em>, az összesített használati és hőtérkép-adatok rögzítésére.</p>'+
-    '<h3>CookieYes</h3><p>A CookieYes tárolja az Ön hozzájárulási döntését (például egy <em>cookieyes-consent</em> sütiben), hogy a weboldal a későbbi látogatások során is tiszteletben tartsa a választását.</p>'+
-    '<h3>A sütik élettartama</h3><p>A sütik élettartama eltérő. A CookieYes hozzájárulási süti jellemzően legfeljebb egy évig, a Google Analytics sütijei jellemzően legfeljebb két évig, a Microsoft Clarity sütijei legfeljebb egy évig maradnak fenn. A munkamenet-sütik a böngésző bezárásakor törlődnek.</p>'+
-    '<h3>A hozzájárulás kezelése</h3><p>A nem feltétlenül szükséges sütiket a weboldal első látogatásakor fogadhatja el vagy utasíthatja el, és választását bármikor módosíthatja a süti sáv (a CookieYes által biztosított süti-/hozzájárulási gomb) újbóli megnyitásával.</p>'+
-    '<h3>Sütik eltávolítása a böngészőben</h3><p>A sütiket a böngésző beállításain keresztül is törölheti vagy letilthatja. A legtöbb böngésző lehetővé teszi a meglévő sütik törlését és az újak megakadályozását az adatvédelmi vagy biztonsági beállítások között. Felhívjuk figyelmét, hogy a szükséges sütik letiltása befolyásolhatja a weboldal működését.</p>'+
-    '<h3>További információ</h3><p>A személyes adatok kezeléséről bővebben az <a class="privacy-link" data-privacy>Adatkezelési tájékoztatóban</a> olvashat.</p>'},
-  it:{title:'Cookie Policy',html:'<p><em>Ultimo aggiornamento: '+new Date().getFullYear()+'</em></p>'+
-    '<p>Questa Cookie Policy spiega come ITH Group, gestita da IDEAL TREND HUNGARY Kft., utilizza i cookie e tecnologie simili su questo sito web. Per informazioni più generali sul trattamento dei dati personali, consulta la nostra <a class="privacy-link" data-privacy>Informativa sulla privacy</a>.</p>'+
-    '<h3>Cosa sono i cookie?</h3><p>I cookie sono piccoli file di testo memorizzati sul tuo dispositivo quando visiti un sito web. Contribuiscono al corretto funzionamento del sito e, quando lo consenti, ci aiutano a capire come viene utilizzato.</p>'+
-    '<h3>Cookie tecnici necessari</h3><p>Questi cookie sono necessari al funzionamento del sito web e non possono essere disattivati. Comprendono il cookie impostato dal nostro strumento di gestione del consenso <strong>CookieYes</strong>, che memorizza le tue scelte sui cookie affinché non ti vengano richieste ripetutamente. Per i cookie strettamente necessari non è richiesto alcun consenso.</p>'+
-    '<h3>Cookie analitici</h3><p>Questi cookie vengono impostati solo se li accetti. Ci aiutano a capire come i visitatori utilizzano il sito, così da poterlo migliorare.</p>'+
-    '<p><strong>Google Analytics</strong> imposta cookie come <em>_ga</em> e <em>_ga_&lt;id&gt;</em> per distinguere i visitatori e misurare l\'utilizzo del sito in forma aggregata.</p>'+
-    '<p><strong>Microsoft Clarity</strong> imposta cookie come <em>_clck</em> e <em>_clsk</em> per registrare dati aggregati di utilizzo e mappe di calore.</p>'+
-    '<h3>CookieYes</h3><p>CookieYes memorizza la tua decisione sul consenso (ad esempio in un cookie <em>cookieyes-consent</em>) affinché il sito possa rispettare la tua scelta nelle visite successive.</p>'+
-    '<h3>Durata dei cookie</h3><p>La durata dei cookie varia. Il cookie di consenso di CookieYes dura in genere fino a un anno; i cookie di Google Analytics in genere fino a due anni; i cookie di Microsoft Clarity fino a un anno. I cookie di sessione vengono eliminati alla chiusura del browser.</p>'+
-    '<h3>Gestione del consenso</h3><p>Puoi accettare o rifiutare i cookie non essenziali alla prima visita del sito e puoi modificare la tua scelta in qualsiasi momento riaprendo il banner dei cookie tramite il pulsante cookie / consenso fornito da CookieYes.</p>'+
-    '<h3>Rimozione dei cookie dal browser</h3><p>Puoi inoltre eliminare o bloccare i cookie tramite le impostazioni del tuo browser. La maggior parte dei browser consente di eliminare i cookie esistenti e di impedirne di nuovi nelle impostazioni relative alla privacy o alla sicurezza. Tieni presente che il blocco dei cookie tecnici necessari può compromettere il funzionamento del sito web.</p>'+
-    '<h3>Ulteriori informazioni</h3><p>Per maggiori dettagli su come trattiamo i dati personali, consulta la nostra <a class="privacy-link" data-privacy>Informativa sulla privacy</a>.</p>'}
+  en:{title:'Cookie Policy',html:'<p>This website does not use analytics, advertising or other non-essential tracking tools. It stores your language preference in your browser local storage. Our hosting provider may process limited technical data in server logs to deliver and secure the site.</p><p>For details about personal data submitted through the contact form, please see our <a class="privacy-link" data-privacy>Privacy Policy</a>.</p>'},
+  de:{title:'Cookie-Richtlinie',html:'<p>Diese Website verwendet keine Analyse-, Werbe- oder sonstigen nicht erforderlichen Tracking-Tools. Ihre Sprachauswahl wird im lokalen Speicher Ihres Browsers gespeichert. Unser Hosting-Anbieter kann begrenzte technische Daten in Serverprotokollen verarbeiten, um die Website bereitzustellen und zu schützen.</p><p>Informationen zu personenbezogenen Daten, die über das Kontaktformular übermittelt werden, finden Sie in unserer <a class="privacy-link" data-privacy>Datenschutzerklärung</a>.</p>'},
+  hu:{title:'Cookie-szabályzat',html:'<p>Ez a weboldal nem használ analitikai, hirdetési vagy más, nem feltétlenül szükséges követőeszközt. A nyelvi beállítást a böngésző helyi tárhelyén menti el. A tárhelyszolgáltató a weboldal kiszolgálása és biztonsága érdekében korlátozott technikai adatokat kezelhet a szervernaplókban.</p><p>A kapcsolatfelvételi űrlapon megadott személyes adatok kezeléséről az <a class="privacy-link" data-privacy>Adatkezelési tájékoztatóban</a> olvashat.</p>'},
+  it:{title:'Cookie Policy',html:'<p>Questo sito non utilizza strumenti di analisi, pubblicità o altri strumenti di tracciamento non essenziali. Memorizza la preferenza linguistica nella memoria locale del browser. Il nostro provider di hosting può trattare dati tecnici limitati nei log del server per fornire e proteggere il sito.</p><p>Per informazioni sui dati personali inviati tramite il modulo di contatto, consulta la nostra <a class="privacy-link" data-privacy>Informativa sulla privacy</a>.</p>'}
 };
 (function(){
   var ov=document.getElementById('cookie-overlay');
@@ -2350,7 +2259,7 @@ var COOKIE={
   go('group');setLang(pickInitialLang());setTimeout(bindReveals,100);
 })();
 
-// --- HASH DEEP-LINKS FOR LEGAL PAGES (CookieYes banner / direct links / sitemap) ---
+// --- HASH DEEP-LINKS FOR LEGAL PAGES (direct links / sitemap) ---
 (function(){
   function openLegal(which){
     var a=document.createElement('a');
