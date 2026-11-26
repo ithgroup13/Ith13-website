@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- The deployment copy supplies the Web3Forms submission identifier here. -->
+<meta name="ith-web3forms-access-key" content="">
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="color-scheme" content="light only"/>
 <meta name="supported-color-schemes" content="light"/>
@@ -1396,9 +1398,20 @@ async function submitForm(form){
   btn.textContent=T[lang].f_sending;
   error.hidden=true;
   try{
-    var data=new URLSearchParams(new FormData(form));
+    var accessKey=document.querySelector('meta[name="ith-web3forms-access-key"]').content.trim();
+    if(!accessKey)throw new Error('The Web3Forms submission identifier is not configured');
+
+    var data=new FormData(form);
+    data.set('access_key',accessKey);
+    data.set('subject','New ITH '+div.charAt(0).toUpperCase()+div.slice(1)+' enquiry — ith13.com');
+    data.set('from_name','ITH Group website');
     data.set('division',div);
-    var r=await fetch('/api/enquiry',{method:'POST',body:data,headers:{'Accept':'application/json'}});
+    data.set('botcheck','');
+    var r=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      body:data,
+      headers:{'Accept':'application/json'}
+    });
     var j=await r.json();
     if(!r.ok||!j.success)throw new Error('Form submission was not accepted');
     showToast(T[lang].f_sent);
